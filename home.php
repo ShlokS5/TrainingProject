@@ -1,9 +1,10 @@
 <?php 
-session_start();
 
-$page = $_SERVER['PHP_SELF'];
-$sec = "10";
-header("Refresh: $sec; url=$page");
+session_start();
+if(empty($_SESSION)){
+  header('location:Register.php');
+}else{
+}
    
 ?>
 
@@ -22,7 +23,7 @@ header("Refresh: $sec; url=$page");
       <a class="navbar-brand" >TIC TAC TOE</a>
       <a class="navbar-brand" href="Register.php">Login</a>
       <a class="navbar-brand" href="home.php">Home</a>
-      <a class="navbar-brand" href="profile.php">Profile</a>
+      <a class="navbar-brand" href="profile.php"> Edit Profile</a>
       <a class="navbar-brand" href="logout.php">Logout</a>
     </div>
   </nav>
@@ -31,6 +32,11 @@ header("Refresh: $sec; url=$page");
   <div class="row content " style="height:515px">
     <div class="h-100 col-sm-3 sidenav bg-light">
       <?php
+
+        $page = $_SERVER['PHP_SELF'];
+        $sec = "20";
+        header("Refresh: $sec; url=$page");
+
         $servername = "localhost";
         $username = "shlok";
         $password = "test456";
@@ -42,13 +48,14 @@ header("Refresh: $sec; url=$page");
           die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT email FROM users WHERE status = 'online'";
+        $sql = "SELECT email, score FROM users WHERE status = 'online'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
 
           while($row = $result->fetch_assoc()) {
-            echo $row["email"]."<br>";
+            echo $row["email"]." - ";
+            echo $row["score"]. "<br>";
           }
         } else {
           echo "No Players Online";
@@ -61,7 +68,7 @@ header("Refresh: $sec; url=$page");
       <style>
 
     body{
-      background: green;
+      background: seagreen;
       font-family: sans-serif;
     }
 
@@ -103,23 +110,42 @@ header("Refresh: $sec; url=$page");
   <div class="messagesection" id="messagesection"></div>
   <div class="gameboard">
     <div class="row">
-      <div class="col" onclick=""></div>
-      <div class="col" onclick=""></div>
-      <div class="col" onclick=""></div>
+      <div class="col">
+        <input type="radio" name="1" id="1">
+      </div>
+      <div class="col">
+        <input type="radio" name="2" id="2">
+      </div>
+      <div class="col">
+        <input type="radio" name="3" id="3">
+      </div>
     </div>  
 
     <div class="row">
-      <div class="col" onclick=""></div>
-      <div class="col" onclick=""></div>
-      <div class="col" onclick=""></div>
+      <div class="col">
+        <input type="radio" name="4" id="4">
+      </div>
+      <div class="col">
+        <input type="radio" name="5" id="5">
+      </div>
+      <div class="col">
+        <input type="radio" name="6" id="6">
+      </div>
     </div>
     
     <div class="row">
-      <div class="col" onclick=""></div>
-      <div class="col" onclick=""></div>
-      <div class="col" onclick=""></div>
+      <div class="col">
+        <input type="radio" name="7" id="7">
+      </div>
+      <div class="col">
+        <input type="radio" name="8" id="8">
+      </div>
+      <div class="col">
+        <input type="radio" name="9" id="9">
+      </div>
     </div>
   </div>
+
     </div>
   </div>
 </div>

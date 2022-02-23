@@ -1,8 +1,15 @@
 <?php 
-
 session_start();
 
+if(empty($_SESSION)){
+  header('location:Register.php');
+}else{
+}
+
+$email = $_SESSION['email'];
+
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,42 +21,31 @@ session_start();
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" >TIC TAC TOE</a>
+      <a class="navbar-brand"> TIC TAC TOE </a>
       <a class="navbar-brand" href="Register.php">Login</a>
       <a class="navbar-brand" href="home.php">Home</a>
-      <a class="navbar-brand" href="profile.php">Profile</a>
+      <a class="navbar-brand" href="profile.php">Edit Profile</a>
       <a class="navbar-brand" href="logout.php">Logout</a>
     </div>
   </nav>
+
+  <div class="container text-dark">
+    <div class="col-lg-12 bg-success py-6">
+      <form action="changefname.php" method="post">
+        &nbsp First Name <input type="text" name="fname" id="fname" placeholder=""> &nbsp
+         <button type="submit" class="btn btn-primary bg-white text-dark my-3">Change</button> <br> <br>
+      </form>
+      <form action="changelname.php" method="post">
+        &nbsp Last Name <input type="text" name="lname" id="lname" placeholder=""> &nbsp
+         <button type="submit" class="btn btn-primary bg-white text-dark my-3">Change </button> <br> <br>
+      </form>
+      <form action="changepass.php" method="post">
+        &nbsp Password <input type="password" name="pass" id="pass" placeholder=""> 
+        &nbsp &nbsp Re-enter Password <input type="password" id="pass2" name="pass2" placeholder=""> &nbsp
+         <button type="submit" class="btn btn-primary bg-white text-dark my-3">Change</button> <br> <br>
+      </form>
+    </div>
+  </div>
+  
 </body>
 </html>
-<?php 
-$Email = $_SESSION['email'];
-$servername = "localhost";
-$username = "shlok";
-$password = "test456";
-$dbname = "project";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-        
-        if ($conn->connect_error) {
-          die("Connection failed: " . $conn->connect_error);
-        }
-
-        $sql = "SELECT * FROM users WHERE email = '$Email'";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-
-          while($row = $result->fetch_assoc()) {
-            echo $row["fname"]." ";
-            echo $row["lname"]."<br>";
-            echo $row["email"]."<br>";
-            echo $row["password"]."<br>";
-            
-          }
-        } else {
-          echo "No Players Online";
-        }
-        $conn->close();
-?>

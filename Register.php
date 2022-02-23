@@ -22,9 +22,9 @@ if(empty($_SESSION)){
     </div>
   </nav>
 
-  <div class="container text-dark">
-    <div class="row">
-      <div class="col-lg-6 my-6 bg-success">
+  <div class="container-fluid text-dark">
+    <div class="row ">
+      <div class="col-lg-6 bg-success py-4">
       <h3 align="center">SIGN UP</h3>
       <form action="insert.php" method="post">
         <label for="name" class="form-label">Name</label>
@@ -45,7 +45,7 @@ if(empty($_SESSION)){
                 <label for="password" class="col-form-label">Enter your Password</label>
             </div>
           <div class="col-auto">
-            <input type="password" name="password" id="password" class="form-control" aria-describedby="passwordHelpInline" placeholder="" required>
+            <input type="password" name="password" id="password" class="form-control" aria-describedby="passwordHelpInline" placeholder="Enter a password" required>
           </div>
           <div class="col-auto">
             <span id="passwordHelpInline" class="form-text"></span>
@@ -53,24 +53,23 @@ if(empty($_SESSION)){
           <div class="row g-3 align-items-center">
           </div>
           <div>
-            <button type="submit" class="btn btn-primary bg-white text-dark my-3">Sign In</button>
+            <button type="submit" class="btn btn-primary bg-white text-dark my-3">Sign Up</button>
           </div>
       </form>
 
       </div>
     </div>
   </div>
-
-    <div class="col-lg-6 my-3 ">
+    <div class="col-lg-6 py-4">
         <h3 align="center"> LOG IN </h3>
 
       <form action="validation.php" method="post">
 
-        <div class="col-6 py-6">
+        <div class="col-6 py-4">
             <label for="email" class="form-label">Email address</label>
             <input type="email" class="form-control" name="Email" aria-describedby="emailHelp" placeholder="Enter a valid email ID" required>
     
-            <div class="row g-3 align-items-center my-6">
+            <div class="row g-3 align-items-center py-4">
             <div class="col-auto">
                 <label for="password" class="col-form-label">Enter your Password</label>
             </div>
