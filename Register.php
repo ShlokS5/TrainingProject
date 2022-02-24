@@ -1,5 +1,7 @@
 <?php 
+
 session_start();
+
 if(empty($_SESSION)){
 }else{
   header('location:home.php');

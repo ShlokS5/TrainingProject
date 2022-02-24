@@ -13,7 +13,10 @@ $dbname = "project";
 $conn = mysqli_connect($servername, $username, $password, $dbname);
         
   if($pass != $pass2){
-    echo "passwords do not match!";
+    echo "<script>
+        alert('Passwords do not match!');
+        window.location.href='profile.php';
+        </script>";
   }else{  
     if ($conn) {
     mysqli_select_db($conn, $dbname);

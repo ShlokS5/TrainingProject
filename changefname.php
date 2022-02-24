@@ -12,7 +12,10 @@ $dbname = "project";
 $conn = mysqli_connect($servername, $username, $password, $dbname);
   
   if (!preg_match ("/^[a-zA-z]*$/", $fname) ) {    
-    echo "Only alphabets and whitespace are allowed.";
+    echo "<script>
+        alert('Only alphabets are allowed!');
+        window.location.href='profile.php';
+        </script>";
   }else{     
     if ($conn) {
     mysqli_select_db($conn, $dbname);

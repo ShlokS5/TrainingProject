@@ -24,7 +24,6 @@ mysqli_select_db($conn, $db);
 $email = $_POST['Email'];
 $pass = $_POST['Pass'];
 
-$_SESSION['email'] = $email;
 
 $q = " select * from users where email = '$email' && password = '$pass' ";
 
@@ -33,7 +32,8 @@ $result = mysqli_query($conn, $q);
 $num = mysqli_num_rows($result);
 
 if($num == 1){
-
+  
+  $_SESSION['email'] = $email;
   $q2 = " update users set status = 'online' where email = '$email' ";
  
   mysqli_query($conn, $q2);
@@ -41,7 +41,10 @@ if($num == 1){
   header('location:home.php');
 }
 else{
-  header('location:Register.php');
+  echo "<script>
+        alert('Invalid Credentials!');
+        window.location.href='Register.php';
+        </script>";;
 }
 
 ?>
