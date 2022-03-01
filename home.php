@@ -88,6 +88,29 @@ if (isset($_POST["gobtn"]))
 </head>
 <body>
 
+<script type="text/javascript">
+
+    var idleTime = 0;
+    $(document).ready(function () {
+
+        var idleInterval = setInterval(timerIncrement, 60000); 
+
+        $(this).mousemove(function (e) {
+            idleTime = 0;
+        });
+        $(this).keypress(function (e) {
+            idleTime = 0;
+        });
+    });
+
+    function timerIncrement() {
+        idleTime = idleTime + 1;
+        if (idleTime > 10) { 
+            window.location = 'logout.php';
+        }
+    }
+</script>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" >TIC TAC TOE</a>
@@ -103,9 +126,9 @@ if (isset($_POST["gobtn"]))
       
       <?php
 
-        $page = $_SERVER['PHP_SELF'];
-        $sec = "30";
-        header("Refresh: $sec; url=$page");
+        //$page = $_SERVER['PHP_SELF'];
+        //$sec = "60";
+        //header("Refresh: $sec; url=$page");
 
         $servername = "localhost";
         $username = "shlok";
@@ -178,7 +201,7 @@ if (isset($_POST["gobtn"]))
           <?php
             for($i = 0; $i <=8; $i++)
             {
-              printf('<input type = "text" id = "ip" name = "box%s" value = "%s" pattern = "x">', $i, $box[$i]);
+              printf('<input type = "text" id = "ip" name = "box%s" value = "%s" pattern = "x|o">', $i, $box[$i]);
               if ($i == 2 || $i == 5 || $i == 8){
               print("<br>");
               }

@@ -1,13 +1,6 @@
-<?php
+`<?php
 
 session_start();
-$chosen = "";
-
-$board = array("1", "2", "3", "4", "5", "6", "7", "8", "9");
-$player = array();
-$computer = array();
-
-$chosen = $_POST['chosen'];
 
 
 ?>
@@ -24,7 +17,7 @@ $chosen = $_POST['chosen'];
 	<style>
 
 		body{
-			background: green;
+			background: seagreen;
 			font-family: sans-serif;
 		}
 
@@ -63,32 +56,64 @@ $chosen = $_POST['chosen'];
 		}
 
 	</style>
+
+	<script type="text/javascript">
+		
+		
+		var matrix = [	[-1, -1, -1],
+						[-1, -1, -1],
+						[-1, -1, -1]	]
+		var win = -1;
+
+
+		function playeraction(elem, row, col){
+
+			matrix[row][col] = 1 ;
+			if (elem.innerHTML != "") {return;}
+			else { elem.innerHTML = "X";
+
+				};
+		};
+
+		function wincheck(matrix){
+			for (var i = 0; i < 3; i++) {
+				if (matrix[i][0] == matrix[i][1] == matrix[i][2]) win = matrix[i, 0];
+				
+				if (matrix[0][i] == matrix[1][i] == matrix[2][i]) win = matrix[0, i];
+				}
+
+				if (matrix[0][0] == matrix[1][1] == matrix[2][2]) win = matrix[0,0];
+
+				if (matrix[0][2] == matrix[1][1] == matrix[2][0]) win = matrix[0,2];
+
+				if(win == '1'){
+					// player wins
+				} else if(win == 'O'){
+					// computer wins
+				} else{
+					// tie
+				}
+	</script>
+ 	
 	
 	<div class="messagesection" id="messagesection"></div>
 	  <div class="gameboard">
 	    <div class="row">
-	      <div class="col" onclick=""></div>
-	      <div class="col" onclick=""></div>
-	      <div class="col" onclick=""></div>
+	      <div class="col" onclick="playeraction(this , 0, 0)"></div>
+	      <div class="col" onclick="playeraction(this , 0, 1)"></div>
+	      <div class="col" onclick="playeraction(this , 0, 1)"></div>
 	    </div>  
 
 	    <div class="row">
-	      <div class="col" onclick=""></div>
-	      <div class="col" onclick=""></div>
-	      <div class="col" onclick=""></div>
+	      <div class="col" onclick="playeraction(this ,1 ,0)"></div>
+	      <div class="col" onclick="playeraction(this ,1 ,1)"></div>
+	      <div class="col" onclick="playeraction(this ,1 ,2)"></div>
 	    </div>
 	    
 	    <div class="row">
-	      <div class="col" onclick=""></div>
-	      <div class="col" onclick=""></div>
-	      <div class="col" onclick=""></div>
-	    </div>
-
-	    <div>
-		    <form method="post" action="game.php">
-		      <br> &emsp; &emsp; &emsp; &emsp;<input type="text" name="chosen" id="chosen">
-		      <button type="submit" class="btn btn-primary bg-light my-2"> </button> 
-		    </form>
+	      <div class="col" onclick="playeraction(this ,2 ,0)"></div>
+	      <div class="col" onclick="playeraction(this ,2 ,1)"></div>
+	      <div class="col" onclick="playeraction(this ,2 ,2)"></div>
 	    </div>
 
 	  </div>

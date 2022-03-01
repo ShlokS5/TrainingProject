@@ -19,6 +19,28 @@ $email = $_SESSION['email'];
 	<title>Profile</title>
 </head>
 <body>
+  <script type="text/javascript">
+
+    var idleTime = 0;
+    $(document).ready(function () {
+
+        var idleInterval = setInterval(timerIncrement, 60000); 
+
+        $(this).mousemove(function (e) {
+            idleTime = 0;
+        });
+        $(this).keypress(function (e) {
+            idleTime = 0;
+        });
+    });
+
+    function timerIncrement() {
+        idleTime = idleTime + 1;
+        if (idleTime > 10) { 
+            window.location = 'logout.php';
+        }
+    }
+  </script>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand"> TIC TAC TOE </a>
@@ -80,19 +102,23 @@ $email = $_SESSION['email'];
       ?>
     </div>
     <div class="col-lg-9 bg-success py-6 ">
+
       <form action="changefname.php" method="post">
         <br> &nbsp First Name <input type="text" name="fname" id="fname" placeholder="" required> &nbsp
          <button type="submit" class="btn btn-primary bg-white text-dark my-2">Change</button> <br> <br>
       </form>
+
       <form action="changelname.php" method="post">
         <br> &nbsp Last Name <input type="text" name="lname" id="lname" placeholder="" required> &nbsp
          <button type="submit" class="btn btn-primary bg-white text-dark my-2">Change </button> <br> <br>
       </form>
+
       <form action="changepass.php" method="post">
         <br> &nbsp Password <input type="password" name="pass" id="pass" placeholder="" required> 
         &nbsp &nbsp Re-enter Password <input type="password" id="pass2" name="pass2" placeholder="" required> &nbsp
          <button type="submit" class="btn btn-primary bg-white text-dark my-2">Change</button> <br> <br>
       </form>
+      
     </div>
   </div>
   
