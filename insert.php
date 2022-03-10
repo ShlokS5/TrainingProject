@@ -36,9 +36,9 @@ if (!preg_match ("/^[a-zA-z]*$/", $fname) ) {
         </script>";;
       }
 
-if (!preg_match ("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/", $fname) ) {    
+if (!preg_match ("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/", $email) ) {    
     echo "<script>
-        alert('Only alphabets are allowed!');
+        alert('Email format is incorrect!');
         window.location.href='profile.php';
         </script>";;
       }
@@ -57,14 +57,17 @@ if($num == 1){
 }
 else{
   //$encpass = md5($pass);
-  echo "<script>
+    echo "<script>
         alert('Account Successfully Created!');
         window.location.href='Register.php';
         </script>";;
 
-  $q2 = "INSERT INTO users (fname, lname, email, password, status, score) VALUES ('$fname', '$lname', '$email', '$pass', 'offilne', '0')";
-
-  mysqli_query($conn, $q2);
+    $q1 = "START TRANSACTION;"
+    $q2 = "INSERT INTO users (fname, lname, email, password, status, score) VALUES ('$fname', '$lname', '$email', '$pass', 'offilne', '0')";
+    $q3 = "COMMIT;"
+    mysqli_query($conn, $q1);
+    mysqli_query($conn, $q2);
+    mysqli_query($conn, $q3);
 }
 
 ?>
